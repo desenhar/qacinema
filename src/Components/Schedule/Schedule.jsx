@@ -5,11 +5,13 @@ const Schedule = () => {
         <body>
             <div className="container">
                 <img width="100%" src={require(
-                    "../../images/popcorn.jpeg")} alt="QA Cinemas" />
+                    "../../images/popcorn.jpeg")} alt="popcorn" />
             </div>
-            <h1>Opening hours</h1>
+            <br></br>
+            <h1 class="text-center">Opening hours</h1>
+            <br></br>
             <div class="container">
-                <table>
+                <table class="table table-bordered">
                     <tr>
                         <th>Days</th>
                         <th>Opening hours</th>
