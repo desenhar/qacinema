@@ -9,7 +9,13 @@ const Schedule = () => {
             <td>{day["close"]}</td>
         </tr>
     )
-
+    const films = mockdata["allFilms"].map(
+        title => <tr>
+            <td>{title["title"]}</td>
+            <td>{title["showingTimes"]}</td>
+            <td>{title["img"]}</td>
+        </tr>
+    )
     return (
         <body>
             <div className="container">
@@ -31,6 +37,19 @@ const Schedule = () => {
                         Close
                     </th>
                     {listings}
+                </table>
+            </div>
+            <br></br>
+            <h1 class="text-center">Whats on</h1>
+            <br></br>
+            <div class="container">
+                <table class="table table-bordered">
+                    <br></br>
+                    <th>
+                        Showtimes
+                    </th>
+                    <th></th>
+                    {films}
                 </table>
             </div>
         </body>
