@@ -55,7 +55,7 @@ const SignUp = () => {
         <div class="form-group">
           <label class="col-sm-2">Phone number:</label>
           <div class="col-sm-10">
-            <input type="number" class="form-control" placeholder="Enter email"/>
+            <input type="number" class="form-control" placeholder="Enter phone number"/>
           </div>
         </div>
         <div class="form-group">
