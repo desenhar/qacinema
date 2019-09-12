@@ -1,12 +1,6 @@
-import React from 'react';
-
-const Schedule = () => {
-    return (
+< !DOCTYPE html >
+    <html lang="en">
         <body>
-            <div className="container">
-                <img width="100%" src={require(
-                    "../../images/popcorn.jpeg")} alt="QA Cinemas" />
-            </div>
             <h1>Opening hours</h1>
             <div class="container">
                 <table>
@@ -29,7 +23,4 @@ const Schedule = () => {
                 </table>
             </div>
         </body>
-    );
-}
-
-export default Schedule;
+    </html>
