@@ -8,6 +8,10 @@ const SignUp = () => {
   // Can now use startDate as a the DOB variable
   const [startDate, setStartDate] = useState(new Date());
 
+  handleSubmit(event){
+    return;
+  }
+
   return (
     <div className="container">
       <img
@@ -16,7 +20,7 @@ const SignUp = () => {
         alt="QA Cinemas"
       />
 
-      <form class="form-horizontal">
+      <form class="form-horizontal" onSubmit={this.handleSubmit}>
         <div class="form-group">
           <label class="col-sm-2">Title:</label>
           <div class="col-sm-10">
