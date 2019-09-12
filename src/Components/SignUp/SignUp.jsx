@@ -16,7 +16,7 @@ const SignUp = () => {
     <div className="container">
       <img
         width="100%"
-        src={require("../../images/Locations.jpg")}
+        src={require("../../images/signup.jpg")}
         alt="QA Cinemas"
       />
 
