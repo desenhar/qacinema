@@ -2,7 +2,7 @@ import React from 'react';
 import mockdata from '../../data/cinemamockdata';
 
 const Schedule = () => {
-    const listings = mockdata["openingTimes"].map(
+    const openingtimes = mockdata["openingTimes"].map(
         day => <tr>
             <td>{day["day"]}</td>
             <td>{day["opening"]}</td>
@@ -13,7 +13,7 @@ const Schedule = () => {
         title => <tr>
             <td>{title["title"]}</td>
             <td>{title["showingTimes"]}</td>
-            <td>{title["img"]}</td>
+            <td><img src="../../images/ThePredator.jpg" alt="thepredator" class="img-thumnbail" /></td>
         </tr>
     )
     return (
@@ -36,7 +36,7 @@ const Schedule = () => {
                     <th>
                         Close
                     </th>
-                    {listings}
+                    {openingtimes}
                 </table>
             </div>
             <br></br>
