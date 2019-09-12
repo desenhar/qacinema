@@ -20,7 +20,7 @@ const SignUp = () => {
         alt="QA Cinemas"
       />
 
-      <form class="form-horizontal" onSubmit={this.handleSubmit}>
+      <form class="form-horizontal" onSubmit={handleSubmit}>
         <div class="form-group">
           <label class="col-sm-2">Title:</label>
           <div class="col-sm-10">
