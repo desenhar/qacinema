@@ -10,14 +10,18 @@ const Schedule = () => {
     const [times, setTimes] = useState([]);
 
     const allFilms = async () => {
+        // Grab the data from the localhost (would ideally have error checking)
         const filmdata = await axios.get(FILMSURL);
+        // Get the JSON from this data package
         const filmlist = filmdata.data;
+        // Map each JSON element to it's HTML counter-part
         const filmhtml = filmlist.map(
             title => <tr>
                 <td>{title["title"]}</td>
                 <td>{title["showingTimes"]}</td>
                 <td><img src={'../../images/' + title["img"]} alt={title["img"]} /></td>
             </tr>)
+        // Update the state to include these HTML elements
         setFilms(filmhtml);
     }
 
@@ -33,6 +37,7 @@ const Schedule = () => {
         setTimes(openinghtml);
     }
 
+    // Call to functions to update states from the json-server
     allFilms();
     openingTimes();
 
