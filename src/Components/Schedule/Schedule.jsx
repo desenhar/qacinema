@@ -38,8 +38,10 @@ const Schedule = () => {
     }
 
     // Call to functions to update states from the json-server
-    allFilms();
-    openingTimes();
+    if (films.length===0 && times.length===0){
+      allFilms();
+      openingTimes();
+    }
 
     return (
         <body>
