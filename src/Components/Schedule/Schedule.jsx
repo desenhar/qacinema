@@ -1,22 +1,41 @@
-import React from 'react';
-import mockdata from '../../data/cinemamockdata';
+import React, { useState } from 'react';
 
+import axios from 'axios';
+
+const FILMSURL = 'http://localhost:80/allFilms';
+const OPENINGURL = 'http://localhost:80/openingTimes';
 
 const Schedule = () => {
-    const openingtimes = mockdata["openingTimes"].map(
-        day => <tr>
-            <td>{day["day"]}</td>
-            <td>{day["opening"]}</td>
-            <td>{day["close"]}</td>
-        </tr>
-    )
-    const films = mockdata["allFilms"].map(
-        title => <tr>
-            <td>{title["title"]}</td>
-            <td>{title["showingTimes"]}</td>
-            <td><img src={'../../images/' + title["img"]} alt={title["img"]} /></td>
-        </tr>
-    )
+    const [films, setFilms] = useState([]);
+    const [times, setTimes] = useState([]);
+
+    const allFilms = async () => {
+        const filmdata = await axios.get(FILMSURL);
+        const filmlist = filmdata.data;
+        const filmhtml = filmlist.map(
+            title => <tr>
+                <td>{title["title"]}</td>
+                <td>{title["showingTimes"]}</td>
+                <td><img src={'../../images/' + title["img"]} alt={title["img"]} /></td>
+            </tr>)
+        setFilms(filmhtml);
+    }
+
+    const openingTimes = async () => {
+        const openingdata = await axios.get(OPENINGURL);
+        const openinglist = openingdata.data;
+        const openinghtml = openinglist.map(
+            day => <tr>
+                <td>{day["day"]}</td>
+                <td>{day["opening"]}</td>
+                <td>{day["close"]}</td>
+            </tr>)
+        setTimes(openinghtml);
+    }
+
+    allFilms();
+    openingTimes();
+
     return (
         <body>
             <div className="container">
@@ -37,7 +56,7 @@ const Schedule = () => {
                     <th>
                         Close
                     </th>
-                    {openingtimes}
+                    {times}
                 </table>
             </div>
             <br></br>
