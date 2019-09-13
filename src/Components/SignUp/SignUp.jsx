@@ -10,6 +10,22 @@ const SignUp = () => {
 
   const handleSubmit = (event) => {
     alert('Submitted');
+    event.preventDefault();
+    const data = new FormData(event.target);
+
+    const title = data.get('title');
+    const fn = data.get('firstname');
+    const ln = data.get('lastname');
+    const email = data.get('email');
+    const number = data.get('number');
+    const dob = startDate;
+
+    console.log(title);
+    console.log(fn);
+    console.log(ln);
+    console.log(email);
+    console.log(number);
+    console.log(dob);
   }
 
   return (
@@ -24,7 +40,7 @@ const SignUp = () => {
         <div class="form-group">
           <label class="col-sm-2">Title:</label>
           <div class="col-sm-10">
-            <select class="form-control">
+            <select name="title" id="title" class="form-control">
               <option>Mr.</option>
               <option>Mrs.</option>
               <option>Miss.</option>
@@ -35,19 +51,19 @@ const SignUp = () => {
         <div class="form-group">
           <label class="col-sm-2">First Name:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Enter first name"/>
+            <input name="firstname" id="firstname" type="text" class="form-control" placeholder="Enter first name"/>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-10">Last Name:</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" placeholder="Enter last name"/>
+            <input name="lastname" id="lastname" type="text" class="form-control" placeholder="Enter last name"/>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Email</label>
           <div class="col-sm-10">
-            <input type="email" class="form-control" placeholder="Email"/>
+            <input name="email" id="email" type="email" class="form-control" placeholder="Email"/>
           </div>
         </div>
         <div class="form-group">
@@ -59,7 +75,7 @@ const SignUp = () => {
         <div class="form-group">
           <label class="col-sm-2">Phone number:</label>
           <div class="col-sm-10">
-            <input type="number" class="form-control" placeholder="Enter phone number"/>
+            <input name="number" id="number" type="number" class="form-control" placeholder="Enter phone number"/>
           </div>
         </div>
         <div class="form-group">
