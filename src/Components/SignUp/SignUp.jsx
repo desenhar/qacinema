@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import DatePicker from 'react-datepicker';
 
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
+const SIGNUPURL = 'http://localhost:80/signup';
+
 const SignUp = () => {
   // Can now use startDate as a the DOB variable
   const [startDate, setStartDate] = useState(new Date());
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async event => {
     alert('Submitted');
     event.preventDefault();
     const data = new FormData(event.target);
@@ -26,6 +29,22 @@ const SignUp = () => {
     console.log(email);
     console.log(number);
     console.log(dob);
+
+    const item = {
+      // 'id' : 4,
+      'title' : title,
+      'firstname' : fn,
+      'lastname' : ln,
+      'email' : email,
+      'number' : number,
+      'dob' : dob
+    }
+
+    try{
+      await axios.post(SIGNUPURL, item);
+    }catch(e){
+      alert(e);
+    }
   }
 
   return (
