@@ -35,6 +35,11 @@ const Bookings = () => {
 
     }
 
+    // Call to functions to update states from the json-server
+    if (films.length===0 ){
+        allFilms();
+    }
+
     return(
         <div className="container">
             Should contain;
