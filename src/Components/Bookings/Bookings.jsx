@@ -37,7 +37,7 @@ const Bookings = () => {
 
     // Call to functions to update states from the json-server
     if (films.length===0 ){
-        allFilms();
+        filmsOptions();
     }
 
     return(
