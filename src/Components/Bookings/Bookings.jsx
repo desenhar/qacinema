@@ -34,7 +34,7 @@ const Bookings = () => {
         const timeshtml = times.map(
             item => <option>{item}</option>
         )
-        setTimes([]);
+        setTimes(timeshtml);
     };
 
     // Function called when form is submitted, very similar to SignUp.jsx
