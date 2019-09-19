@@ -45,11 +45,17 @@ const Bookings = () => {
         const data = new FormData(event.target);
 
         // Convert film name to ID using `films`
+        const res = await axios.get(FILMSURL); // access allFilms URL
+        const films = await res.data; // get allFilms data
+
+        let filmid = "";
+        const filmtitle = data.get('filmid');
+        films.forEach(item => {if(item["title"]===filmtitle){filmid=item["_id"]}});
 
         // Construct booking item to go into DB
         const item = {
             // "id" : Math.floor(Math.random()*1000), // Not sustainable
-            "filmid" : data.get('filmid'),
+            "filmid" : filmid,
             "bookingDate" : data.get('bookingDate'),
             "email" : data.get('email'),
             "adults" : data.get('adults'),
