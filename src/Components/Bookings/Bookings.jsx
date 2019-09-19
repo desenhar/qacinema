@@ -14,27 +14,26 @@ const Bookings = () => {
         // Grabs films from the FILMSURL
         // Same function can be found in Schedule.jsx (under a different name)
         // Should contruct options tags containing films and setFilms() to this array
-        const res = await axios.get(FILMSURL);
-        const films = await res.data;
+        const res = await axios.get(FILMSURL); // access allFilms URL
+        const films = await res.data; // get allFilms data
         const filmshtml = films.map(
             item => <option name={item["_id"]} id={item["title"]}>
-            {item["title"]}</option>
+            {item["title"]}</option> // map to html
         );
-        setFilms(filmshtml);
+        setFilms(filmshtml); // update state
     };
 
     const timeOptions = async (film) => {
         // Sees which film is currently selected on the dropdown (defined by state film)
         // Queries FILMSURL to find the showing times for this film, and constructs opetions tags from this
         // Store these HTML arrays using setTimes()
-        // const times = film[`showingTimes`]
-        const id = getElementByID(film).name;
-        const res = await axios.get(SINGLEFILMURL+id);
-        const times = await res.data["showingTimes"];
+        const id = getElementByID(film).name; // get id of user selected film
+        const res = await axios.get(SINGLEFILMURL+id); // get film data from singleFilms
+        const times = await res.data["showingTimes"]; // get times array
         const timeshtml = times.map(
-            item => <option>{item}</option>
+            item => <option>{item}</option> // map to html
         )
-        setTimes(timeshtml);
+        setTimes(timeshtml); // update state
     };
 
     // Function called when form is submitted, very similar to SignUp.jsx
