@@ -17,7 +17,7 @@ const Bookings = () => {
         const res = await axios.get(FILMSURL); // access allFilms URL
         const films = await res.data; // get allFilms data
         const filmshtml = films.map(
-            item => <option name={item["_id"]} id={item["title"]}>
+            item => <option id={item["_id"]} ref={item["title"]}>
             {item["title"]}</option> // map to html
         );
         setFilms(filmshtml); // update state
@@ -27,7 +27,7 @@ const Bookings = () => {
         // Sees which film is currently selected on the dropdown (defined by state film)
         // Queries FILMSURL to find the showing times for this film, and constructs opetions tags from this
         // Store these HTML arrays using setTimes()
-        const id = getElementByID(film).name; // get id of user selected film
+        const id = this.refs.film; // get id of user selected film
         const res = await axios.get(SINGLEFILMURL+id); // get film data from singleFilms
         const times = await res.data["showingTimes"]; // get times array
         const timeshtml = times.map(
@@ -61,6 +61,58 @@ const Bookings = () => {
             - Once a film is selected from the dropdown, setFilm to be this film (will have to google how to detect dropdown selection)
             - Another dropdown showing the timings for this film, and defined options through {times}
             - Submit button and other fields yadda yadda
+
+            <form className="form-horizontal" onSubmit={submitBooking}>
+                <div className="form-group">
+                    <label className="col-sm-2">Film: *</label>
+                    <div className="col-sm-10">
+                        <select name="filmid" id="filmid" className="form-control">
+                        {films}
+                        </select>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label className="col-sm-2">Booking date: *</label>
+                    <div className="col-sm-10">
+                        <select name="bookingDate" id="bookingDate" className="form-control">
+                        {times}
+                        </select>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label className="col-sm-2">Email: *</label>
+                    <div className="col-sm-10">
+                        <input name="email" id="email" className="form-control">
+                        </input>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label className="col-sm-2"># of adults: *</label>
+                    <div className="col-sm-10">
+                        <input name="adults" id="adults" className="form-control">
+                        </input>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label className="col-sm-2"># of child: *</label>
+                    <div className="col-sm-10">
+                        <input name="child" id="child" className="form-control">
+                        </input>
+                    </div>
+                </div>
+                <div className="form-group">    
+                    <label className="col-sm-2"># of concessions: *</label>
+                    <div className="col-sm-10">
+                        <input name="concessions" id="concessions" className="form-control">
+                        </input>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <div className="col-sm-offset-2 col-sm-10">
+                        <button type="submit" className="btn btn-primary">Sign up</button>
+                    </div>
+                </div>
+            </form>
         </div>
 )};
 
