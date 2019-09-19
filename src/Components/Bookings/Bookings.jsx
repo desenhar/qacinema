@@ -16,7 +16,8 @@ const Bookings = () => {
         const res = await axios.get(FILMSURL);
         const films = await res.data;
         const filmshtml = films.map(
-            item => <option>{item["title"]}</option>
+            item => <option id={item["_id"]}>
+            {item["title"]}</option>
         );
         setFilms(filmshtml);
     };
