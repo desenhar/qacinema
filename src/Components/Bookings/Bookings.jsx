@@ -23,6 +23,18 @@ const Bookings = () => {
         setTimes([]);
     };
 
+    // Function called when form is submitted, very similar to SignUp.jsx
+    const submitBooking = async event => {
+        event.preventDefault();
+        const data = new FormData(event.target);
+
+        // Construct booking item to go into DB
+        const item = {};
+
+        // Post data to /makeBooking
+
+    }
+
     return(
         <div className="container">
             Should contain;
