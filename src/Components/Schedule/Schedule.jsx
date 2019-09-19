@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-
 import axios from 'axios';
+const https = require('https');
+  
+// At request level
+const agent = new https.Agent({  
+    rejectUnauthorized: false
+});
 
-const FILMSURL = 'http://localhost:4000/allFilms';
-const OPENINGURL = 'http://localhost:4000/openingTimes';
+const FILMSURL = 'https://localhost:4000/allFilms';
+const OPENINGURL = 'https://localhost:4000/openingTimes';
 
 const Schedule = () => {
     const [films, setFilms] = useState([]);
@@ -11,7 +16,7 @@ const Schedule = () => {
 
     const allFilms = async () => {
         // Grab the data from the localhost (would ideally have error checking)
-        const filmdata = await axios.get(FILMSURL);
+        const filmdata = await axios.get(FILMSURL, { httpsAgent: agent });
         // Get the JSON from this data package
         const filmlist = filmdata.data;
         // Map each JSON element to it's HTML counter-part
@@ -26,7 +31,7 @@ const Schedule = () => {
     }
 
     const openingTimes = async () => {
-        const openingdata = await axios.get(OPENINGURL);
+        const openingdata = await axios.get(OPENINGURL, { httpsAgent: agent });
         const openinglist = openingdata.data;
         const openinghtml = openinglist.map(
             day => <tr key={day["_id"]}>

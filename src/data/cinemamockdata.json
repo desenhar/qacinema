@@ -41,7 +41,12 @@
       "synopsis": " Test Film 1 Synopsis",
       "cast": "Test Film 1 Cast",
       "directors": "Test Film 1 Directors",
-      "showingTimes": ["11:45", "13:30", "17:15", "20:45"],
+      "showingTimes": [
+        "11:45",
+        "13:30",
+        "17:15",
+        "20:45"
+      ],
       "releaseDate": "2019-05-27T00:00:00.000Z",
       "filmStatus": "1",
       "img": "film1Image.jpg"
@@ -52,7 +57,12 @@
       "synopsis": " Test Film 2 Synopsis",
       "cast": "Test Film 2 Cast",
       "directors": "Test Film 2 Directors",
-      "showingTimes": ["11:45", "13:30", "17:15", "20:45"],
+      "showingTimes": [
+        "11:45",
+        "13:30",
+        "17:15",
+        "20:45"
+      ],
       "releaseDate": "2019-10-27T00:00:00.000Z",
       "filmStatus": "2",
       "img": "film2Image.jpg"
@@ -63,7 +73,12 @@
       "synopsis": " Test Film 3 Synopsis",
       "cast": "Test Film 3 Cast",
       "directors": "Test Film 3 Directors",
-      "showingTimes": ["11:45", "13:30", "17:15", "20:45"],
+      "showingTimes": [
+        "11:45",
+        "13:30",
+        "17:15",
+        "20:45"
+      ],
       "releaseDate": "2019-05-27T00:00:00.000Z",
       "filmStatus": "1",
       "img": "film3Image.jpg"
@@ -187,7 +202,34 @@
       "gender": "Male"
     }
   ],
-  "bookings" : [
-    {}
+  "bookings": [
+    {},
+    {
+      "id": 550,
+      "filmid": "King of Thieves",
+      "bookingDate": "11:45",
+      "email": "sam.hine27@gmail.com",
+      "adults": "1",
+      "child": "1",
+      "concessions": "1"
+    },
+    {
+      "id": 195,
+      "filmid": "King of Thieves",
+      "bookingDate": "11:45",
+      "email": "sam.hine27@gmail.com",
+      "adults": "0",
+      "child": "1",
+      "concessions": "1"
+    },
+    {
+      "id": 261,
+      "filmid": "King of Thieves",
+      "bookingDate": "11:45",
+      "email": "sam.hine27@gmail.com",
+      "adults": "1",
+      "child": "1",
+      "concessions": "1"
+    }
   ]
 }

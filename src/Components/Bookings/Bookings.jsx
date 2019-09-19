@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
-const FILMSURL = 'http://localhost:4000/allFilms';
-const BOOKINGSURL = 'http://localhost:4000/makeBooking';
-const SINGLEFILMURL = 'http://localhost:4000/singleFilm/';
+const FILMSURL = 'https://localhost:4000/allFilms';
+const BOOKINGSURL = 'https://localhost:4000/bookings';
+const SINGLEFILMURL = 'https://localhost:4000/singleFilm/';
 
 const Bookings = () => {
     const [film, setFilm] = useState(``);
@@ -32,7 +32,7 @@ const Bookings = () => {
             
         //const res = await axios.get(SINGLEFILMURL); // get film data from singleFilms
         //const times = await res.data["showingTimes"]; // get times array
-        const times = ["11:45", "13:30", "17:15", "20:45"]
+        const times = ["11:45", "13:30", "17:15", "20:45"];
         const timeshtml = times.map(
             item => <option>{item}</option> // map to html
         )
@@ -46,7 +46,9 @@ const Bookings = () => {
 
         // Construct booking item to go into DB
         const item = {
-            "filmId" : data.get('filmId'),
+            "id" : Math.floor(Math.random()*1000), // Not sustainable
+            "filmid" : data.get('filmid'),
+            "bookingDate" : data.get('bookingDate'),
             "email" : data.get('email'),
             "adults" : data.get('adults'),
             "child" : data.get('child'),
@@ -57,6 +59,7 @@ const Bookings = () => {
         // Post data to /makeBooking
         try{
             await axios.post(BOOKINGSURL, item);
+            alert("Booked!");
           }catch(e){
             alert(e);
           }
@@ -74,6 +77,12 @@ const Bookings = () => {
 
     return(
         <div className="container">
+            <img
+                width="100%"
+                src={require("../../images/signup.jpg")}
+                alt="QA Cinemas"
+            />
+
             <form className="form-horizontal" onSubmit={submitBooking}>
                 <div className="form-group">
                     <label className="col-sm-2">Film: *</label>

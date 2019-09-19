@@ -44,6 +44,7 @@ const SignUp = () => {
 
     try{
       await axios.post(SIGNUPURL, item);
+      
     }catch(e){
       alert(e);
     }
