@@ -13,7 +13,12 @@ const Bookings = () => {
         // Grabs films from the FILMSURL
         // Same function can be found in Schedule.jsx (under a different name)
         // Should contruct options tags containing films and setFilms() to this array
-        setFilms([]);
+        const res = await axios.get(FILMSURL);
+        const films = await res.data;
+        const filmshtml = films.map(
+            item => <option>{item["title"]}</option>
+        );
+        setFilms(filmshtml);
     };
 
     const timeOptions = async (film) => {
