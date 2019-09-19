@@ -12,7 +12,6 @@ const SignUp = () => {
   const [startDate, setStartDate] = useState(new Date());
 
   const handleSubmit = async event => {
-    alert('Submitted');
     event.preventDefault();
     const data = new FormData(event.target);
 
@@ -44,7 +43,7 @@ const SignUp = () => {
 
     try{
       await axios.post(SIGNUPURL, item);
-      
+      alert('Submitted');
     }catch(e){
       alert(e);
     }
