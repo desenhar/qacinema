@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const FILMSURL = 'http://localhost:80/allFilms';
 const BOOKINGSURL = 'http://localhost:80/makeBooking';
+const SINGLEFILMURL = 'http://localhost:80/singleFilm/';
 
 const Bookings = () => {
     const [film, setFilm] = useState(``);
@@ -16,7 +17,7 @@ const Bookings = () => {
         const res = await axios.get(FILMSURL);
         const films = await res.data;
         const filmshtml = films.map(
-            item => <option id={item["_id"]}>
+            item => <option name={item["_id"]} id={item["title"]}>
             {item["title"]}</option>
         );
         setFilms(filmshtml);
@@ -26,6 +27,13 @@ const Bookings = () => {
         // Sees which film is currently selected on the dropdown (defined by state film)
         // Queries FILMSURL to find the showing times for this film, and constructs opetions tags from this
         // Store these HTML arrays using setTimes()
+        // const times = film[`showingTimes`]
+        const id = getElementByID(film).name;
+        const res = await axios.get(SINGLEFILMURL+id);
+        const times = await res.data["showingTimes"];
+        const timeshtml = times.map(
+            item => <option>{item}</option>
+        )
         setTimes([]);
     };
 
