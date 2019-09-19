@@ -5,7 +5,14 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-const SIGNUPURL = 'http://localhost:80/signup';
+const https = require('https');
+
+// At request level
+const agent = new https.Agent({  
+  rejectUnauthorized: false
+});
+
+const SIGNUPURL = 'https://localhost:4000/signup';
 
 const SignUp = () => {
   // Can now use startDate as a the DOB variable
@@ -42,7 +49,7 @@ const SignUp = () => {
     }
 
     try{
-      await axios.post(SIGNUPURL, item);
+      await axios.post(SIGNUPURL, item, { httpsAgent: agent });
       alert('Submitted');
     }catch(e){
       alert(e);

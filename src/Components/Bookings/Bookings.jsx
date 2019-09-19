@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from 'axios';
 
 const FILMSURL = 'https://localhost:4000/allFilms';
-const BOOKINGSURL = 'https://localhost:4000/bookings';
+const BOOKINGSURL = 'https://localhost:4000/makeBooking';
 const SINGLEFILMURL = 'https://localhost:4000/singleFilm/';
 
 const Bookings = () => {
@@ -32,7 +32,7 @@ const Bookings = () => {
             
         //const res = await axios.get(SINGLEFILMURL); // get film data from singleFilms
         //const times = await res.data["showingTimes"]; // get times array
-        const times = ["11:45", "13:30", "17:15", "20:45"];
+        const times = ["2019-09-20T11:45:00.000Z", "2019-09-20T13:30:00.000Z", "2019-09-20T17:15:00.000Z", "2019-09-20T20:45:00.000Z"];
         const timeshtml = times.map(
             item => <option>{item}</option> // map to html
         )
@@ -44,9 +44,11 @@ const Bookings = () => {
         event.preventDefault();
         const data = new FormData(event.target);
 
+        // Convert film name to ID using `films`
+
         // Construct booking item to go into DB
         const item = {
-            "id" : Math.floor(Math.random()*1000), // Not sustainable
+            // "id" : Math.floor(Math.random()*1000), // Not sustainable
             "filmid" : data.get('filmid'),
             "bookingDate" : data.get('bookingDate'),
             "email" : data.get('email'),
