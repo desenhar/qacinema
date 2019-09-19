@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
-const FILMSURL = 'http://localhost:80/allFilms';
-const BOOKINGSURL = 'http://localhost:80/makeBooking';
-const SINGLEFILMURL = 'http://localhost:80/singleFilm/';
+const FILMSURL = 'http://localhost:4000/allFilms';
+const BOOKINGSURL = 'http://localhost:4000/makeBooking';
+const SINGLEFILMURL = 'http://localhost:4000/singleFilm/';
 
 const Bookings = () => {
     const [film, setFilm] = useState(``);
@@ -16,20 +16,23 @@ const Bookings = () => {
         // Should contruct options tags containing films and setFilms() to this array
         const res = await axios.get(FILMSURL); // access allFilms URL
         const films = await res.data; // get allFilms data
+        console.log(films);
         const filmshtml = films.map(
-            item => <option id={item["_id"]} ref={item["title"]}>
+            item => <option id={item["_id"]} value={item["title"]}>
             {item["title"]}</option> // map to html
         );
         setFilms(filmshtml); // update state
     };
 
-    const timeOptions = async (film) => {
+    const timeOptions = async () => {
         // Sees which film is currently selected on the dropdown (defined by state film)
         // Queries FILMSURL to find the showing times for this film, and constructs opetions tags from this
         // Store these HTML arrays using setTimes()
-        const id = this.refs.film; // get id of user selected film
-        const res = await axios.get(SINGLEFILMURL+id); // get film data from singleFilms
-        const times = await res.data["showingTimes"]; // get times array
+
+            
+        //const res = await axios.get(SINGLEFILMURL); // get film data from singleFilms
+        //const times = await res.data["showingTimes"]; // get times array
+        const times = ["11:45", "13:30", "17:15", "20:45"]
         const timeshtml = times.map(
             item => <option>{item}</option> // map to html
         )
@@ -42,9 +45,21 @@ const Bookings = () => {
         const data = new FormData(event.target);
 
         // Construct booking item to go into DB
-        const item = {};
+        const item = {
+            "filmId" : data.get('filmId'),
+            "email" : data.get('email'),
+            "adults" : data.get('adults'),
+            "child" : data.get('child'),
+            "concessions" : data.get('concessions')
+        };
 
+        console.log(item);
         // Post data to /makeBooking
+        try{
+            await axios.post(BOOKINGSURL, item);
+          }catch(e){
+            alert(e);
+          }
 
     }
 
@@ -53,20 +68,17 @@ const Bookings = () => {
         filmsOptions();
     }
 
+    if (times.length===0){
+        timeOptions();
+    }
+
     return(
         <div className="container">
-            Should contain;
-            - Form with two dropdowns (as well as other required information from bookings model)
-            - One dropdown for the films, with options defined through {films}
-            - Once a film is selected from the dropdown, setFilm to be this film (will have to google how to detect dropdown selection)
-            - Another dropdown showing the timings for this film, and defined options through {times}
-            - Submit button and other fields yadda yadda
-
             <form className="form-horizontal" onSubmit={submitBooking}>
                 <div className="form-group">
                     <label className="col-sm-2">Film: *</label>
                     <div className="col-sm-10">
-                        <select name="filmid" id="filmid" className="form-control">
+                        <select defaultValue={film} onChange={timeOptions} name="filmid" id="filmid" className="form-control">
                         {films}
                         </select>
                     </div>

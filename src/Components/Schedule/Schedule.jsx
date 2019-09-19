@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import axios from 'axios';
 
-const FILMSURL = 'http://localhost:80/allFilms';
-const OPENINGURL = 'http://localhost:80/openingTimes';
+const FILMSURL = 'http://localhost:4000/allFilms';
+const OPENINGURL = 'http://localhost:4000/openingTimes';
 
 const Schedule = () => {
     const [films, setFilms] = useState([]);
