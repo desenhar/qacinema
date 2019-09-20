@@ -16,9 +16,8 @@ const Bookings = () => {
         // Should contruct options tags containing films and setFilms() to this array
         const res = await axios.get(FILMSURL); // access allFilms URL
         const films = await res.data; // get allFilms data
-        console.log(films);
         const filmshtml = films.map(
-            item => <option id={item["_id"]} value={item["title"]}>
+            item => <option key={item["_id"]} value={item["title"]}>
             {item["title"]}</option> // map to html
         );
         setFilms(filmshtml); // update state
@@ -34,7 +33,7 @@ const Bookings = () => {
         //const times = await res.data["showingTimes"]; // get times array
         const times = ["2019-09-20T11:45:00.000Z", "2019-09-20T13:30:00.000Z", "2019-09-20T17:15:00.000Z", "2019-09-20T20:45:00.000Z"];
         const timeshtml = times.map(
-            item => <option>{item}</option> // map to html
+            (item, idx) => <option key={idx}>{item}</option> // map to html
         )
         setTimes(timeshtml); // update state
     };
